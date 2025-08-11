@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Birthday Cake Collecting Game</title>
+  <style>
+    body {
+      background: #88c07b;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0;
+      min-height: 100vh;
+    }
+    #gameArea {
+      position: relative;
+      width: 500px;
+      height: 400px;
+      background: #99d98c;
+      border: 4px solid #333;
+      margin-top: 40px;
+      overflow: hidden;
+    }
+    #player {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: #ffd6a5;
+      border: 2px solid #b67b3f;
+      left: 220px; top: 180px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+    }
+    .cake {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      background: transparent;
+      font-size: 28px;
+      z-index: 1;
+    }
+    #status {
+      margin-top: 15px;
+      font-size: 22px;
+      color: #5a4231;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎂 Collect 5 Cakes for the Birthday! 🎉</h1>
+  <div id="gameArea">
+    <div id="player">🧑‍🌾</div>
+    <!-- Cakes will be added by JS -->
+  </div>
+  <div id="status">Cakes Collected: 0 / 5</div>
+  <script>
+    const gameArea = document.getElementById('gameArea');
+    const player = document.getElementById('player');
+    const statusDiv = document.getElementById('status');
+    const areaWidth = 500, areaHeight = 400;
+    const playerSize = 40;
+    const cakeSize = 32;
+    let cakesCollected = 0;
+    const totalCakes = 5;
+    // Initial player position
+    let playerPos = {left: 220, top: 180};
+    // Generate random positions for cakes
+    function randomCakePosition() {
+      // Avoid placing on the player
+      let left, top;
+      do {
+        left = Math.floor(Math.random() * (areaWidth - cakeSize));
+        top = Math.floor(Math.random() * (areaHeight - cakeSize));
+      } while (
+        Math.abs(left - playerPos.left) < 40 &&
+        Math.abs(top - playerPos.top) < 40
+      );
+      return {left, top};
+    }
+
+    // Create cakes
+    let cakes = [];
+    function initCakes() {
+      for (let i = 0; i < totalCakes; i++) {
+        const cakeDiv = document.createElement('div');
+        cakeDiv.className = 'cake';
+        cakeDiv.innerText = "🍰";
+        let pos = randomCakePosition();
+        cakeDiv.style.left = pos.left + 'px';
+        cakeDiv.style.top = pos.top + 'px';
+        cakeDiv.dataset.left = pos.left;
+        cakeDiv.dataset.top = pos.top;
+        gameArea.appendChild(cakeDiv);
+        cakes.push(cakeDiv);
+      }
+    }
+    initCakes();
+
+    // Update player position
+    function drawPlayer() {
+      player.style.left = playerPos.left + 'px';
+      player.style.top = playerPos.top + 'px';
+    }
+
+    // Movement logic
+    document.addEventListener('keydown', (e) => {
+      let moved = false;
+      switch(e.key) {
+        case "ArrowUp":
+          if (playerPos.top > 0) {
+            playerPos.top -= 20;
+            moved = true;
+          }
+          break;
+        case "ArrowDown":
+          if (playerPos.top < areaHeight - playerSize) {
+            playerPos.top += 20;
+            moved = true;
+          }
+          break;
+        case "ArrowLeft":
+          if (playerPos.left > 0) {
+            playerPos.left -= 20;
+            moved = true;
+          }
+          break;
+        case "ArrowRight":
+          if (playerPos.left < areaWidth - playerSize) {
+            playerPos.left += 20;
+            moved = true;
+          }
+          break;
+      }
+      if (moved) {
+        drawPlayer();
+        checkCakes();
+      }
+    });
+
+    // Collision detection
+    function checkCakes() {
+      for (let i = cakes.length - 1; i >= 0; i--) {
+        const cake = cakes[i];
+        const cakeLeft = parseInt(cake.dataset.left);
+        const cakeTop = parseInt(cake.dataset.top);
+        if (
+          Math.abs(playerPos.left - cakeLeft) < 28 &&
+          Math.abs(playerPos.top - cakeTop) < 28
+        ) {
+          // Collect cake!
+          cake.parentNode.removeChild(cake);
+          cakes.splice(i, 1);
+          cakesCollected++;
+          statusDiv.textContent = `Cakes Collected: ${cakesCollected} / ${totalCakes}`;
+          if (cakesCollected === totalCakes) {
+            statusDiv.textContent = 'All cakes collected! Happy Birthday! 🎈';
+            setTimeout(() => {
+              window.location.href = "bday.html"
+            }, 1500);
+          }
+        }
+      }
+    }
+  </script>
+</body>
+</html>

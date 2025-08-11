@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>[Name]'s Portfolio</title>
+  <!-- TailwindCSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+  <!-- GSAP Animation CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <!-- tsParticles -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js" defer></script>
+  <!-- Animate.css for some subtle entrances -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="script.js"></script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-500 overflow-x-hidden">
+  <!-- Animated Particles Hero Background -->
+  <div id="particle-hero" class="fixed inset-0 -z-10"></div>
+
+  <!-- Cursor Trail -->
+  <div id="cursor-trail"></div>
+
+  <!-- Navbar -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 flex justify-between items-center p-4 bg-white/70 dark:bg-gray-900/80 backdrop-blur shadow-lg z-50 opacity-0 animate-fadeInDown">
+    <div class="font-bold text-xl tracking-tight animated-link">[Name]</div>
+    <ul class="flex gap-6">
+      <li><a href="#home" class="nav-link">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#resume" class="nav-link">Resume</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+    <button id="theme-toggle" class="ml-4 p-2 transition rounded focus:outline-none bg-gray-200 dark:bg-gray-700 hover:scale-110" title="Toggle dark/light">
+      <span id="theme-icon">🌙</span>
+    </button>
+  </nav>
+
+  <!-- HOME (Hero) -->
+  <section id="home" class="min-h-screen flex flex-col justify-center items-center pt-28 text-center">
+    <h1 class="text-4xl md:text-6xl font-bold mb-4">
+      <span id="typed" class="animated-glitch text-blue-400"></span>
+      <span class="animate-blink font-mono text-pink-400">|</span>
+    </h1>
+    <p class="text-lg mb-8 max-w-xl animate__animated animate__fadeInUp">
+      Crafting web apps, Minecraft mods, and Python magic. Let’s build something cool!
+    </p>
+    <a href="#contact" class="btn-animated bg-gradient-to-r from-blue-500 to-purple-500 hover:from-purple-600 hover:to-pink-500 shadow-lg text-white px-8 py-3 rounded-lg text-lg mt-2 transition-transform duration-300 font-semibold hover:scale-110 focus:outline-none">
+      Hire Me
+    </a>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="py-24 px-4 bg-gray-200 dark:bg-gray-800">
+    <div class="max-w-3xl mx-auto animate__animated animate__fadeInLeft">
+      <h2 class="text-3xl font-semibold mb-6 animated-link">About Me</h2>
+      <p>
+        Hi! I’m <b>[Name]</b>, a 17-year-old tech enthusiast from India.<br>
+        I love building intuitive web apps, creating custom Minecraft mods in Java, and automating everything with Python.<br>
+        <br>
+        <span class="text-blue-400 font-semibold">My focus:</span> Growing as a developer by taking on freelance projects and solving new challenges.
+      </p>
+      <ul class="flex flex-wrap gap-4 mt-6">
+        <li class="badge-anim">India 🇮🇳</li>
+        <li class="badge-anim">17 years old</li>
+        <li class="badge-anim">Freelancer</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="py-24 px-4 bg-gradient-to-br from-gray-100/80 to-blue-100/90 dark:from-gray-900/90 dark:to-blue-950/80">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl font-semibold mb-8 animated-link">Skills</h2>
+      <div class="flex flex-wrap gap-7 items-center justify-center">
+        <span class="skill-icon" data-title="HTML">HTML5</span>
+        <span class="skill-icon" data-title="CSS">CSS3</span>
+        <span class="skill-icon" data-title="JS">JavaScript</span>
+        <span class="skill-icon" data-title="TS">TypeScript</span>
+        <span class="skill-icon" data-title="Java">Java</span>
+        <span class="skill-icon" data-title="Python">Python</span>
+        <span class="skill-icon" data-title="Git">Git</span>
+        <span class="skill-icon" data-title="VSCode">VSCode</span>
+        <span class="skill-icon" data-title="Linux">Linux</span>
+      </div>
+      <div class="flex flex-wrap mt-8 gap-8 justify-center">
+        <!-- Animated progress bars (fake stats for effect) -->
+        <div>
+          <div class="text-sm mb-1">Web Dev</div>
+          <div class="w-48 h-3 bg-gray-300 dark:bg-gray-700 rounded overflow-hidden">
+            <div class="bg-blue-500 h-3 rounded animate-progress" style="width: 92%"></div>
+          </div>
+        </div>
+        <div>
+          <div class="text-sm mb-1">Minecraft Modding</div>
+          <div class="w-48 h-3 bg-gray-300 dark:bg-gray-700 rounded overflow-hidden">
+            <div class="bg-green-400 h-3 rounded animate-progress" style="width: 80%"></div>
+          </div>
+        </div>
+        <div>
+          <div class="text-sm mb-1">Python Scripting</div>
+          <div class="w-48 h-3 bg-gray-300 dark:bg-gray-700 rounded overflow-hidden">
+            <div class="bg-yellow-400 h-3 rounded animate-progress" style="width: 88%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="py-24 px-4 bg-gray-100 dark:bg-gray-900">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl font-semibold mb-8 animated-link">Projects</h2>
+      <div class="grid md:grid-cols-2 gap-10">
+        <!-- Project Card Example, each card gets entrance and hover animation via GSAP/JS -->
+        <div class="project-card group relative overflow-hidden rounded-2xl shadow-xl bg-white dark:bg-gray-800 p-8 transition-all duration-500">
+          <span class="absolute top-[-30px] left-[-40px] w-56 h-56 bg-gradient-to-tr from-blue-500 via-purple-500 to-pink-500 opacity-40 blur-2xl animate-spinSlow"></span>
+          <h3 class="text-xl font-bold mb-2 group-hover:text-blue-400 transition">Personal Portfolio</h3>
+          <p class="mb-3">My own website showcasing my journey, skills, and projects, built with HTML, Tailwind, JavaScript, and sick animations.</p>
+          <a href="https://github.com/yourgithub/webapp-portfolio" target="_blank"
+            class="btn-animated mt-2">GitHub →</a>
+        </div>
+        <div class="project-card group relative overflow-hidden rounded-2xl shadow-xl bg-white dark:bg-gray-800 p-8 transition-all duration-500">
+          <span class="absolute top-[-30px] left-[-40px] w-56 h-56 bg-gradient-to-tr from-pink-500 via-blue-500 to-cyan-500 opacity-40 blur-2xl animate-spinSlow"></span>
+          <h3 class="text-xl font-bold mb-2 group-hover:text-pink-400 transition">MagicItems Mod</h3>
+          <p class="mb-3">A Minecraft mod introducing custom magic items, programmed in Java using Forge.</p>
+          <a href="https://github.com/yourgithub/minecraftmod-magicitems" target="_blank"
+            class="btn-animated mt-2">GitHub →</a>
+        </div>
+        <div class="project-card group relative overflow-hidden rounded-2xl shadow-xl bg-white dark:bg-gray-800 p-8 transition-all duration-500">
+          <span class="absolute top-[-30px] left-[-40px] w-56 h-56 bg-gradient-to-tr from-green-400 via-blue-500 to-yellow-500 opacity-40 blur-2xl animate-spinSlow"></span>
+          <h3 class="text-xl font-bold mb-2 group-hover:text-green-400 transition">Discord Python Bot</h3>
+          <p class="mb-3">A Discord bot written in Python to automate server management and bring fun features.</p>
+          <a href="https://github.com/yourgithub/py-discord-bot" target="_blank"
+            class="btn-animated mt-2">GitHub →</a>
+        </div>
+        <!-- ... add more project-card divs as needed -->
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUME -->
+  <section id="resume" class="py-24 px-4">
+    <div class="max-w-3xl mx-auto animate__animated animate__fadeInRight">
+      <h2 class="text-3xl font-semibold mb-6 animated-link">Resume</h2>
+      <a href="/public/resume.pdf" download class="btn-animated bg-blue-600 hover:bg-blue-700 text-white px-7 py-3 rounded-xl shadow-lg transition-all duration-300 font-bold inline-block mb-4">
+        Download PDF Resume
+      </a>
+      <div class="overflow-hidden rounded-xl shadow-lg bg-gradient-to-tr from-blue-100 to-pink-100 dark:from-blue-900 dark:to-pink-900 px-8 py-6 animate-slideResume">
+        <ul class="list-disc list-inside text-md">
+          <li>Freelance website projects – building personal and small biz sites</li>
+          <li>Open-source contributor (Minecraft mods, Python tools)</li>
+          <li>Intern – local web agency (1 month)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-24 px-4 bg-gray-200 dark:bg-gray-800">
+    <div class="max-w-3xl mx-auto text-center animate__animated animate__fadeIn">
+      <h2 class="text-3xl font-semibold mb-6 animated-link">Contact</h2>
+      <form class="flex flex-col gap-4 items-center"
+            action="mailto:your.email@example.com" method="POST" enctype="text/plain">
+        <input type="text" name="name" placeholder="Your Name" class="input-anim" required>
+        <input type="email" name="email" placeholder="Your Email" class="input-anim" required>
+        <textarea name="message" rows="5" placeholder="Your Message" class="input-anim" required></textarea>
+        <button type="submit" class="btn-animated bg-gradient-to-r from-blue-600 to-pink-500 px-8 py-2 rounded-lg text-white font-semibold hover:scale-105 focus:outline-none transition-all">
+          Send
+        </button>
+      </form>
+      <div class="mt-10 flex gap-12 justify-center">
+        <a href="https://github.com/yourgithub" target="_blank" class="social-icon">
+          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5C5.648.5.5 5.796.5 12.473c0 5.271 3.438 9.742 8.207 11.321.589.11.807-.256.807-.572 0-.282-.011-1.203-.016-2.181-3.338.747-4.042-1.653-4.042-1.653-.536-1.402-1.309-1.776-1.309-1.776-1.07-.777.081-.762.081-.762 1.182.087 1.805 1.239 1.805 1.239 1.052 1.864 2.76 1.326 3.426 1.014.108-.78.411-1.324.748-1.63-2.669-.315-5.475-1.413-5.475-6.284 0-1.387.461-2.522 1.219-3.412-.123-.318-.53-1.604.116-3.346 0 0 1.006-.333 3.3 1.232a11.244 11.244 0 013.005-.417c1.02.004 2.047.141 3.006.417 2.292-1.565 3.297-1.232 3.297-1.232.648 1.742.241 3.028.119 3.346.76.89 1.217 2.025 1.217 3.412 0 4.882-2.81 5.965-5.486 6.274.422.373.793 1.108.793 2.234 0 1.612-.015 2.912-.015 3.306 0 .318.214.687.813.569C20.562 22.21 24 17.743 24 12.473 24 5.796 18.852.5 12 .5z"/></svg>
+        </a>
+        <a href="https://linkedin.com/in/yourlinkedin" target="_blank" class="social-icon">
+          <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M19.7 3.3c-2-2-5.3-2-7.3 0s-2 5.3 0 7.3c2 2 5.3 2 7.3 0s2-5.3 0-7.3zm-6.1 1.1c1-1 2.5-1 3.5 0 1 1 1 2.5 0 3.5-1 1-2.5 1-3.5 0-1-1-1-2.5 0-3.5zm9.2 13.6v3c0 .6-.4 1-1 1h-15c-.6 0-1-.4-1-1v-3c0-2.5 5-3.9 7.5-3.9.8 0 2.1.2 3.5.9.5.3.6.4 1.5.9 2.1 1.2 2.5 2 2.5 2.1zM4.8 10.4c.7.7 2.3.7 3 0 .7-.7.7-2.3 0-3-.7-.7-2.3-.7-3 0-.7.7-.7 2.3 0 3zm-3.7 4.6c.2-.3.7-.6 2.1-1.4.7-.4 1-.6 1.4-.7 1.6-.5 2.7-.6 3.4-.6 2.2 0 3.4.5 4.1.9.5.3 1.4.7 2.8 1.6.3.2.4.4.4.5 0 .2-.2.3-.5.3-.8 0-3.4-2.4-6-2.4-2.6 0-5.2 2.4-6 2.4-.3 0-.4-.1-.5-.3z"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-4 bg-gray-300 dark:bg-gray-900 animate__animated animate__fadeInUp">
+    <span>&copy; 2025 [Name]. Crafted with ❤️ in India.</span>
+  </footer>
+</body>
+</html>
